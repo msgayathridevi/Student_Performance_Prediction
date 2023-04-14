@@ -3,11 +3,8 @@
 import os
 import sys  # to use custom exception
 
-from pathlib import Path
-sys.path.append(str(Path(__file__).parent.parent.parent))
-
-# from .. import exception
-# # from ..logger import logging
+# from pathlib import Path
+# sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.exception import CustomException
 from src.logger import logging
