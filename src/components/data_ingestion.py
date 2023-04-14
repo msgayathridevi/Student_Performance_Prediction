@@ -36,7 +36,7 @@ class DataIngestion:
             df = pd.read_csv('notebook\data\student_performance.csv') # can read from different sources
             logging.info("Read teh dataset as dataframe")
 
-            os.makedir(os.path.dirname(self.ingestion_config.train_data_path), exist_ok = True)
+            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok = True)
 
             df.to_csv(self.ingestion_config.train_data_path, index = False, header = True)
             logging.info("Train test split initiated")
@@ -56,7 +56,7 @@ class DataIngestion:
         
         except Exception as e:
             # pass
-            raise exception.CustomException(e, sys)
+            raise CustomException(e, sys)
 
 if __name__=="__main__":
     obj = DataIngestion()
