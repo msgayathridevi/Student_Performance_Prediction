@@ -1,15 +1,17 @@
+# for logging and documentation of execution 
 import logging
 import os
 from datetime import datetime
 
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
-logs_path=os.path.join(os.getcwd(),"logs",LOG_FILE)
+logs_path=os.path.join(os.getcwd(),"logs",LOG_FILE) # os.getcwd() : present directory
 os.makedirs(logs_path, exist_ok=True)
 
 LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
 
-logging.basicConfig(
+logging.basicConfig( 
     filename=LOG_FILE_PATH,
+    # tradional format most commonly sued
     format="[ %(asctime)s] %(lineno)d %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
 
