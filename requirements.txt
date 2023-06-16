@@ -9,5 +9,6 @@ xgboost
 dill
 Flask
 
-# -e .
+# whenever this file runs, setup.py also runs
+# -e . # triggers setup.py
 # -e .w
