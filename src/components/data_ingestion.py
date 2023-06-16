@@ -1,5 +1,6 @@
 # read dataset from specific source and split the dataset into train test
-
+# convert the eda and training into modular programming using data ingestion, transformation and model trainder.py files
+ 
 import os
 import sys  # to use custom exception
 
@@ -14,25 +15,29 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass # create class variable
 
 from src.components.data_transformation import DataTransformation
-from src.components.data_transformation import DataTransformationConfig
+# from src.components.data_transformation import DataTransformationConfig
 
 from src.components.model_trainer import ModelTrainer
-from src.components.model_trainer import ModelTrainerConfig
+# from src.components.model_trainer import ModelTrainerConfig
 
-
+# requiring some input configs for data ingestion component can be written in a separate class
 @dataclass
 class DataIngestionConfig:
+    # in artifacts all the op folders will be saved
     train_data_path : str = os.path.join('artifacts', "train.csv")
     test_data_path : str = os.path.join('artifacts', "test.csv")
     raw_data_path : str = os.path.join('artifacts', "data.csv")
 
 class DataIngestion:
     def __init__(self):
+        # all the 3 artifacts will be saved in ingestion_config
         self.ingestion_config = DataIngestionConfig()
 
     def initiate_data_ingestion(self):
         logging.info("Entered teh data ingestion method or component")
         try:
+            # can read from different sources
+            # for now I fetched locally
             df = pd.read_csv('notebook\data\student_performance.csv') # can read from different sources
             logging.info("Read teh dataset as dataframe")
 
@@ -48,10 +53,11 @@ class DataIngestion:
 
             logging.info("Ingestion fo the data is completed")
             
+            # return the train and test data path
             # for data transformation
             return(
                 self.ingestion_config.train_data_path,
-                self.ingestion_config.test_data_path,
+                self.ingestion_config.test_data_path
             )
         
         except Exception as e:
